@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Vollkorn } from "next/font/google";
 import "./globals.css";
-import { Loader } from "./components/loader";
+import Footer from "./components/footer";
 
 const volkhorn = Vollkorn({ subsets: ["latin"] });
 
@@ -17,9 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={volkhorn.className}>
-        <Loader>{children}</Loader>
-      </body>
+      <body className={volkhorn.className}>{children}</body>
     </html>
   );
 }

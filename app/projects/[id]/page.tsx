@@ -3,9 +3,8 @@ import React, { useState, useEffect, ReactElement, useContext } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
-import { ProjectModel } from "@/data/project-model";
-import { useRouter } from "next/router";
-import { ProjectsContext } from "../../components/loader";
+import { getProjectById } from "@/api/api";
+import { ProjectInterface } from "@/api/interfaces";
 
 const Wrapper = styled.div`
   border-left: 8px solid #000000;
@@ -114,19 +113,14 @@ const LoaderContainer = styled.div`
   z-index: 2;
 `;
 
-export default function Page({ params }: { params: { id: string } }) {
-  const projects = useContext(ProjectsContext);
-
-  const [project, setProject] = useState<ProjectModel>();
+export default async function Page({ params }: { params: { id: string } }) {
+  const [project, setProject] = useState<ProjectInterface>();
   const [currentPageIndex, setCurrentPage] = useState(0);
   const [imageElements, setImageElements] = useState<ReactElement[]>([]);
   const [imagesVisisble, setImagesVisisble] = useState(false);
 
   useEffect(() => {
-    const newProject = projects.find((value) => {
-      return value.id == params.id;
-    });
-    setProject(newProject);
+    getProjectById(params.id).then((newProject) => setProject(newProject));
   }, []);
 
   useEffect(() => {

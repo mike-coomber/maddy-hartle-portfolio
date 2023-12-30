@@ -1,59 +1,26 @@
 import React from "react";
-import styled from "styled-components";
-
-const Wrapper = styled.header`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 0 30px;
-  z-index: 500;
-`;
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px #000000 solid;
-  border-bottom: 1px #000000 solid;
-  align-items: center;
-`;
-
-const Col = styled.div`
-  flex: 1;
-  margin: 8px 0;
-`;
-
-const TitleText = styled.h1`
-  margin: 8px 0;
-  font-weight: 500;
-`;
-
-const SideText = styled.p<{ textAlign: string }>`
-  font-size: 14px;
-  margin: 0;
-  text-align: ${(props) => (props.textAlign === "left" ? "left" : "right")};
-`;
 
 export default function Header() {
   return (
-    <Wrapper>
-      <Row>
-        <Col>
-          <SideText textAlign="left">
+    <div className="absolute top-0 right-0 left-0 px-8 z-50">
+      <div className="flex justify-between items-center border-y-1 border-solid border-black">
+        <div className="flex-1 my-2">
+          <div className="text-md text-left">
             Art Director specializing in visual <br />
             identity, illustration and motion.
-          </SideText>
-        </Col>
-        <Col>
-          <TitleText>maddy hartle</TitleText>
-        </Col>
-        <Col>
-          <SideText textAlign="right">
+          </div>
+        </div>
+        <div className="flex-1 my-2">
+          <h1 className="font-medium">maddy hartle</h1>
+        </div>
+        <div className="flex-1 my-2">
+          <div className="text-md text-right">
             maddy.hartle@gmail.com
             <br />
             +44 7428173081
-          </SideText>
-        </Col>
-      </Row>
-    </Wrapper>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
