@@ -12,7 +12,6 @@ export function HomeView({ projects }: { projects: ProjectInterface[] }) {
   const linkElements: ReactElement[] = [];
 
   projects.forEach((project, i) => {
-    console.log(i, currentPictureIndex);
     imgElements.push(
       <div
         className={clsx(
@@ -37,10 +36,7 @@ export function HomeView({ projects }: { projects: ProjectInterface[] }) {
         key={project.id}
         href={`projects/${project.id}`}
         className="cursor-pointer text-black italic text-5xl hover:underline"
-        onMouseEnter={() => {
-          setCurrentPictureIndex(i);
-          console.log("hover");
-        }}
+        onMouseEnter={() => setCurrentPictureIndex(i)}
         onMouseLeave={() => setCurrentPictureIndex(undefined)}
       >
         {project.name}
