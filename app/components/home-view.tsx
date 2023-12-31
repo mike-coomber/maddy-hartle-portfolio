@@ -1,12 +1,25 @@
 "use client";
+import { getProjectsSnapshot } from "@/api/api";
 import { ProjectInterface } from "@/api/interfaces";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
-export function HomeView({ projects }: { projects: ProjectInterface[] }) {
+export function HomeView({
+  initialProjects,
+}: {
+  initialProjects: ProjectInterface[];
+}) {
+  const [projects, setProjects] = useState(initialProjects);
   const [currentPictureIndex, setCurrentPictureIndex] = useState<number>();
+
+  useEffect(() => {
+    const unsubscribe = getProjectsSnapshot((data) => setProjects(data));
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const imgElements: ReactElement[] = [];
   const linkElements: ReactElement[] = [];

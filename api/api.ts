@@ -1,5 +1,13 @@
 import { ProjectInterface } from "./interfaces";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  Unsubscribe,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
 import { db } from "@/firebase";
 
 export async function getAllProjects(): Promise<ProjectInterface[]> {
@@ -10,6 +18,20 @@ export async function getAllProjects(): Promise<ProjectInterface[]> {
   return docs.map((doc) => {
     return doc.data() as ProjectInterface;
   });
+}
+
+export function getProjectsSnapshot(
+  onDataFetched: (data: ProjectInterface[]) => void
+): Unsubscribe {
+  const q = query(collection(db, "work"));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const results = querySnapshot.docs.map(
+      (doc) => doc.data() as ProjectInterface
+    );
+    onDataFetched(results);
+  });
+
+  return unsubscribe;
 }
 
 export async function getProjectById(id: string): Promise<ProjectInterface> {

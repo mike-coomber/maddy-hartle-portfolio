@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <HomeView projects={projects} />
+      <HomeView initialProjects={projects} />
       <Footer />
     </>
   );
