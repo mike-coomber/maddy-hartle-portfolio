@@ -1,5 +1,4 @@
 import { getProjectById } from "@/api/api";
-import clsx from "clsx";
 import Image from "next/image";
 import { VideoPlayer } from "./components/video-player";
 

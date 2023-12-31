@@ -11,14 +11,16 @@ export function Pagination({ project }: { project: ProjectInterface }) {
 
   return project.pages.map((_, i) => {
     const pageNumber = i + 1;
+
     return (
       <Link
+        key={i}
         href={`${project.id}?page=${pageNumber}`}
         className={clsx(`flex text-4xl hover:underline`, {
           underline: pageNumber == currentPageNumber,
         })}
       >
-        {i + 1}
+        {pageNumber}
       </Link>
     );
   });

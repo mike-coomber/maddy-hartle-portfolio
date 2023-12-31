@@ -8,11 +8,9 @@ import { Pagination } from "./components/pagination";
 export default async function Layout({
   children,
   params,
-  searchParams,
 }: {
   children: ReactNode;
   params: { id: string };
-  searchParams: { page: string };
 }) {
   const project = await getProjectById(params.id);
 
