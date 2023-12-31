@@ -27,6 +27,7 @@ export function HomeView({
   projects.forEach((project, i) => {
     imgElements.push(
       <div
+        key={i}
         className={clsx(
           `absolute top-0 bottom-0 left-0 right-0 -z-10 transition-opacity `,
           {
@@ -39,6 +40,7 @@ export function HomeView({
           src={project.image!.url!}
           alt={project.name}
           fill={true}
+          loading="eager"
           objectFit="contain"
           objectPosition="center"
         />

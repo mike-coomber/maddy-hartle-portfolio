@@ -23,21 +23,22 @@ export default async function Page({
       />
       <div className="flex flex-1 items-center justify-center">
         {hasImages && (
-          <div className="flex gap-2 justify-center p-4 absolute left-0 right-0">
-            {currentPage.images?.map((image) => (
-              <Image
-                key={image.name}
-                alt={image.name}
-                src={image.url}
-                height={400}
-                width={400}
-                className="flex flex-1"
-                style={{
-                  height: "100vh",
-                  objectFit: "contain",
-                }}
-              />
-            ))}
+          <div className="flex flex-1 bottom-0 top-0 gap-2 justify-center absolute p-16">
+            {currentPage.images?.map((image) => {
+              const multipleImages = currentPage.images!.length > 0;
+              return (
+                <Image
+                  key={image.name}
+                  alt={image.name}
+                  src={image.url}
+                  loading="eager"
+                  height={multipleImages ? 920 : undefined}
+                  width={multipleImages ? 1080 : undefined}
+                  fill={multipleImages ? undefined : true}
+                  className="flex flex-1 object-contain"
+                />
+              );
+            })}
           </div>
         )}
         {currentPage.videoUrl && <VideoPlayer url={currentPage.videoUrl} />}

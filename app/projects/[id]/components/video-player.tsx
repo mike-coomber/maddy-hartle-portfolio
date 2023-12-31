@@ -13,7 +13,6 @@ export function VideoPlayer({ url }: { url: string }) {
 
   return (
     <div>
-      {/* TODO check this */}
       <div
         className="z-20 absolute"
         onMouseDown={(e) => setIsPlaying(!isPlaying)}
@@ -25,8 +24,8 @@ export function VideoPlayer({ url }: { url: string }) {
         volume={0.1}
         onClick={() => setIsPlaying(!isPlaying)}
         controls={false}
-        width={width}
-        height={height}
+        height={620}
+        width={900}
         style={{ display: isReady ? "flex" : "none" }}
         loop={true}
       />
