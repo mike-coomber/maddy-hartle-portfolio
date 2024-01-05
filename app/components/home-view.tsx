@@ -41,8 +41,7 @@ export function HomeView({
           alt={project.name}
           fill={true}
           loading="eager"
-          objectFit="contain"
-          objectPosition="center"
+          className="object-contain object-center"
         />
       </div>
     );

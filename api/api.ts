@@ -10,8 +10,11 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase";
 
+const email = "maddy.hartle@gmail.com";
+const allProjectsPath = `${email}/projects/all-projects`;
+
 export async function getAllProjects(): Promise<ProjectInterface[]> {
-  const workCollection = collection(db, "work");
+  const workCollection = collection(db, allProjectsPath);
   const docSnapshot = await getDocs(workCollection);
   const docs = docSnapshot.docs;
 
@@ -23,7 +26,7 @@ export async function getAllProjects(): Promise<ProjectInterface[]> {
 export function getProjectsSnapshot(
   onDataFetched: (data: ProjectInterface[]) => void
 ): Unsubscribe {
-  const q = query(collection(db, "work"));
+  const q = query(collection(db, allProjectsPath));
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
     const results = querySnapshot.docs.map(
       (doc) => doc.data() as ProjectInterface
@@ -35,7 +38,7 @@ export function getProjectsSnapshot(
 }
 
 export async function getProjectById(id: string): Promise<ProjectInterface> {
-  const docRef = doc(db, "work", id);
+  const docRef = doc(db, allProjectsPath, id);
 
   const result = await getDoc(docRef);
   return result.data() as ProjectInterface;
