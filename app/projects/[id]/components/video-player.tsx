@@ -12,7 +12,7 @@ export function VideoPlayer({ url }: { url: string }) {
   const width = "1100px";
 
   return (
-    <div>
+    <div className="flex flex-1 gap-2 justify-center absolute max-w-full">
       <div
         className="z-20 absolute"
         onMouseDown={(e) => setIsPlaying(!isPlaying)}
@@ -24,8 +24,6 @@ export function VideoPlayer({ url }: { url: string }) {
         volume={0.1}
         onClick={() => setIsPlaying(!isPlaying)}
         controls={false}
-        height={620}
-        width={900}
         style={{ display: isReady ? "flex" : "none" }}
         loop={true}
       />

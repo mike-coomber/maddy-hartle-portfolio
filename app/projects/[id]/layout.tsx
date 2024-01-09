@@ -16,11 +16,11 @@ export default async function Layout({
 
   return (
     <>
-      <div className="flex flex-col min-h-screen border-l-8 border-solid border-black z-0">
+      <div className="flex flex-col min-h-screen sm:border-l-8 border-solid border-black z-0">
         <ProjectHeader project={project} />
         {children}
-        <div className="flex relative z-10 border-t border-solid border-black justify-center items-center p-4">
-          <div className="flex gap-1 mr-20">
+        <div className="flex flex-col-reverse sm:flex-row relative z-10 gap-2 sm:gap-6 border-t border-solid border-black justify-center items-center p-4">
+          <div className="flex gap-1">
             <Pagination project={project} />
           </div>
           <div className="flex flex-1 justify-end">{project.description}</div>

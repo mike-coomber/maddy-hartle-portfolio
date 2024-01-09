@@ -1,6 +1,7 @@
 import { getProjectById } from "@/api/api";
 import Image from "next/image";
 import { VideoPlayer } from "./components/video-player";
+import clsx from "clsx";
 
 export default async function Page({
   params,
@@ -21,9 +22,13 @@ export default async function Page({
         className="absolute top-0 bottom-0 left-0 right-0 -z-10"
         style={{ backgroundColor: currentPage.backgroundColor }}
       />
-      <div className="flex flex-1 items-center justify-center">
+      <div
+        className={clsx("flex flex-1 items-center justify-center", {
+          relative: (currentPage.images?.length ?? 0) > 1,
+        })}
+      >
         {hasImages && (
-          <div className="flex flex-1 bottom-0 top-0 gap-2 justify-center absolute p-16">
+          <div className="flex flex-1 bottom-0 top-0 gap-2 justify-center absolute p-4 sm:p-16">
             {currentPage.images?.map((image) => {
               const multipleImages = currentPage.images!.length > 0;
               return (
