@@ -13,14 +13,18 @@ export function ProjectHeader({ project }: { project: ProjectInterface }) {
         <div className="flex">
           <Link href="/">maddy hartle</Link>
         </div>
-        <div className="flex flex-row gap-1 sm:flex-col">
-          <div>client:</div>
-          {project.client}
-        </div>
-        <div className="flex flex-row gap-1 sm:flex-col">
-          <div>services:</div>
-          {project.services}
-        </div>
+        {project.client && (
+          <div className="flex flex-row gap-1 sm:flex-col">
+            <div>client:</div>
+            {project.client}
+          </div>
+        )}
+        {project.services && (
+          <div className="flex flex-row gap-1 sm:flex-col">
+            <div>services:</div>
+            {project.services}
+          </div>
+        )}
       </div>
       <div className="hidden sm:flex justify-end text-right h-min flex-1">
         maddy.hartle@gmail.com

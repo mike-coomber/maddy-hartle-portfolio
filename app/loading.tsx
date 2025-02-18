@@ -4,6 +4,7 @@ export default function Loading() {
   return (
     <div className="w-full h-full absolute justify-center items-center flex flex-col">
       <Image
+        unoptimized
         src={"/assets/loading-animation.gif"}
         alt="loading animation"
         width={400}

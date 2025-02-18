@@ -1,18 +1,29 @@
-import { getProjectById } from "@/api/api";
+import { getAllProjects, getProjectById } from "@/api/api";
 import Image from "next/image";
-import { VideoPlayer } from "./components/video-player";
+import { VideoPlayer } from "../../../../components/video-player";
 import clsx from "clsx";
+
+export async function generateStaticParams() {
+  const projects = await getAllProjects();
+  return projects.flatMap((project) => {
+    return project.pages.map((_, index) => {
+      return {
+        params: {
+          id: project.id,
+          page: (index + 1).toString(),
+        },
+      };
+    });
+  });
+}
 
 export default async function Page({
   params,
-  searchParams,
 }: {
-  params: { id: string };
-  searchParams?: { page: number };
+  params: { id: string; page: string };
 }) {
   const project = await getProjectById(params.id);
-  const pageNumber = searchParams?.page ?? 1;
-
+  const pageNumber = parseInt(params.page);
   const currentPage = project.pages[pageNumber - 1];
   const hasImages = currentPage.images !== undefined;
 

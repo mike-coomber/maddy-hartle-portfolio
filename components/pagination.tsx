@@ -3,11 +3,11 @@
 import { ProjectInterface } from "@/api/interfaces";
 import clsx from "clsx";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export function Pagination({ project }: { project: ProjectInterface }) {
-  const searchParams = useSearchParams();
-  const currentPageNumber = parseInt(searchParams.get("page") ?? "1");
+  const url = usePathname();
+  const currentPageNumber = parseInt(url.split("/").pop() ?? "1");
 
   return project.pages.map((_, i) => {
     const pageNumber = i + 1;
@@ -15,7 +15,7 @@ export function Pagination({ project }: { project: ProjectInterface }) {
     return (
       <Link
         key={i}
-        href={`${project.id}?page=${pageNumber}`}
+        href={`${pageNumber}`}
         className={clsx(`flex text-4xl hover:underline`, {
           underline: pageNumber == currentPageNumber,
         })}

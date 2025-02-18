@@ -1,9 +1,9 @@
 import { getProjectById } from "@/api/api";
-import Footer from "@/app/components/footer";
+import Footer from "@/components/footer";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { ProjectHeader } from "./components/project-header";
-import { Pagination } from "./components/pagination";
+import { ProjectHeader } from "../../../components/project-header";
+import { Pagination } from "../../../components/pagination";
 
 export default async function Layout({
   children,
